@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+  #body
+  {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("https://i.pinimg.com/736x/5d/73/ea/5d73eaabb25e3805de1f8cdea7df4a42--tumblr-backgrounds-iphone-phone-wallpapers-iphone-wallaper-tumblr.jpg");
+  display: flex;
+  justify-content: center;
+  }
+  #form
+  {
+  background-color: whitesmoke;
+  background-repeat: no-repeat;
+  height:100%;
+  width:900px;
+  margin:5px;
+  padding:16px;
+  border-radius: 15px;
+  }
+  #form-submit-button 
+  {
+  height:40px;
+  width:130px;
+  background: #016ABC;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+  }
+  #form-submit-button:hover 
+  {
+  background: #B9DFFF;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+  }
+  #remedies_button 
+  {
+  height:40px;
+  width:130px;
+  background: green;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+  }
+  #remedies_button:hover 
+  {
+  background: greenyellow;
+  color: #fff;
+  border: 1px solid #eee;
+  border-radius: 20px;
+  box-shadow: 5px 5px 5px #eee;
+  text-shadow: none;
+  }
+  
+  #box
+  {
+      display:flex;
+      justify-content: center;
+  }
+  #area
+  {
+      display:flex;
+      justify-content: center;
+  }
+  #Progress_Status 
+  {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 25px;
+  }
+  
+#myprogressBar 
+{
+  width: 0%;
+  height: 35px;
+  background-color: red;
+  text-align: center;
+  line-height: 32px;
+  color: whitesmoke;
+  border-radius: 25px;
+}
+p
+{
+    font-weight:bolder;
+    font-size: 18px;
+}
+    </style>
+    <script>
+        function stress_level()
+        {
+            var q1 = document.getElementsByName('q1');
+            var q2 = document.getElementsByName('q2');
+            var q3 = document.getElementsByName('q3');
+            var q4 = document.getElementsByName('q4');
+            var q5 = document.getElementsByName('q5');
+            var q6 = document.getElementsByName('q6');
+            var q7 = document.getElementsByName('q7');
+            var q8 = document.getElementsByName('q8');
+            var q9 = document.getElementsByName('q9');
+            var q10 = document.getElementsByName('q10');
+            var sum=0;
+            var l=q1.length;
+            for(i = 0; i < l; i++) 
+            {
+                if(q1[i].checked)
+                {
+                    sum+=i;
+                }
+                if(q3[i].checked)
+                {
+                    sum+=i;
+                }
+                if(q5[i].checked)
+                {
+                    sum+=i;
+                }
+                if(q7[i].checked)
+                {
+                    sum+=i;
+                } 
+                if(q9[i].checked)
+                {
+                    sum+=i;
+                }   
+            }
+            for(i = 0; i < l; i++) 
+            {
+                if(q2[i].checked)
+                {
+                    sum+=l-i-1;
+                }
+                if(q4[i].checked)
+                {
+                    sum+=l-i-1;
+                }
+                if(q6[i].checked)
+                {
+                    sum+=l-i-1;
+                }
+                if(q8[i].checked)
+                {
+                    sum+=l-i-1;
+                } 
+                if(q10[i].checked)
+                {
+                    sum+=l-i-1;
+                }   
+            }
+            var element = document.getElementById("myprogressBar");   
+            var width = (sum/40)*100;
+            width = width.toFixed(2)
+            if(width>=0 && width<=32.5)
+            {
+                element.style.width = width + '%';
+                element.innerHTML = width * 1  + '%';
+                element.style.backgroundColor="green";
+                document.getElementById("result").innerHTML="Low Stress Level";
+            }
+            else if(width>=35 && width<=65)
+            {
+                element.style.width = width + '%';
+                element.innerHTML = width * 1  + '%';
+                element.style.backgroundColor="orange";
+                document.getElementById("result").innerHTML="Moderate Stress Level";
+            }
+            else if(width>=67.5 && width<=100)
+            {
+                element.style.width = width + '%';
+                element.innerHTML = width * 1  + '%';
+                element.style.backgroundColor="red";
+                document.getElementById("result").innerHTML="High Stress Level";
+            }
+            document.getElementById("remedies_button").removeAttribute("hidden");
+
+        }
+        function page_traversal()
+        {
+            var q1 = document.getElementsByName('q1');
+            var q2 = document.getElementsByName('q2');
+            var q3 = document.getElementsByName('q3');
+            var q4 = document.getElementsByName('q4');
+            var q5 = document.getElementsByName('q5');
+            var q6 = document.getElementsByName('q6');
+            var q7 = document.getElementsByName('q7');
+            var q8 = document.getElementsByName('q8');
+            var q9 = document.getElementsByName('q9');
+            var q10 = document.getElementsByName('q10');
+            var sum=0;
+            var l=q1.length;
+            for(i = 0; i < l; i++) 
+            {
+                if(q1[i].checked)
+                {
+                    sum+=i;
+                }
+                if(q3[i].checked)
+                {
+                    sum+=i;
+                }
+                if(q5[i].checked)
+                {
+                    sum+=i;
+                }
+                if(q7[i].checked)
+                {
+                    sum+=i;
+                } 
+                if(q9[i].checked)
+                {
+                    sum+=i;
+                }   
+            }
+            for(i = 0; i < l; i++) 
+            {
+                if(q2[i].checked)
+                {
+                    sum+=l-i-1;
+                }
+                if(q4[i].checked)
+                {
+                    sum+=l-i-1;
+                }
+                if(q6[i].checked)
+                {
+                    sum+=l-i-1;
+                }
+                if(q8[i].checked)
+                {
+                    sum+=l-i-1;
+                } 
+                if(q10[i].checked)
+                {
+                    sum+=l-i-1;
+                }   
+            }
+            var width = (sum/40)*100;
+            width = width.toFixed(2)
+            if(width>=0 && width<=32.5)
+            {
+                window.location.href = "../low_stress/";
+            }
+            else if(width>=35 && width<=65)
+            {
+                window.location.href = "../moderate_stress/";
+            }
+            else if(width>=67.5 && width<=100)
+            {
+                window.location.href = "../high_stress/";
+            }
+
+        }
+    </script>
+
+</head>
+<body id="body">
+<div id="form">
+<h2 style="text-align:center;font-weight: bolder;font-size: 25px;text-decoration: underline;color:#016ABC;">STRESS QUESTIONNAIRE</h2>
+<br>
+<br>
+<p>1. How often have you been angered because of things that happened that were outside of your control for the past month?</p>
+
+<div>
+ <input type="radio" id="a1" name="q1" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b1" name="q1" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c1" name="q1" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d1" name="q1" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e1" name="q1" value="Very Often">
+ <label for="VEry Often">Very Often</label>
+</div> 
+<br>
+<p>2. How often did you feel on top of things in the previous month?</p>
+
+<div>
+ <input type="radio" id="a2" name="q2" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b2" name="q2" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c2" name="q2" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d2" name="q2" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e2" name="q2" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div>
+<br>
+
+<p>3. How frequently in the previous month did you find that you couldn't keep up with everything you had to do?</p>
+
+<div>
+ <input type="radio" id="a3" name="q3" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b3" name="q3" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c3" name="q3" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d3" name="q3" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e3" name="q3" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div> 
+<br>
+
+<p>4. How often did you feel that things were going your way in the previous month?</p>
+
+<div>
+ <input type="radio" id="a4" name="q4" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b4" name="q4" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c4" name="q4" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d4" name="q4" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e4" name="q4" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div>
+<br>
+
+<p>5. How frequently have you been worried and stressed in the previous month?</p>
+
+<div>
+ <input type="radio" id="a5" name="q5" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b5" name="q5" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c5" name="q5" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d5" name="q5" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e5" name="q5" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div>
+<br>
+
+<p>6. How many times in the past month have you been able to handle annoyances or control irritations in your life?</p>
+
+<div>
+ <input type="radio" id="a6" name="q6" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b6" name="q6" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c6" name="q6" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d6" name="q6" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e6" name="q6" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div>
+<br>
+
+<p>7. How many times in the previous month have you been upset because something unexpected happened?</p>
+
+<div>
+ <input type="radio" id="a7" name="q7" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b7" name="q7" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c7" name="q7" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d7" name="q7" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e7" name="q7" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div>
+<br>
+
+<p>8. How frequently in the previous month have you felt confident in your capacity to deal with your personal issues?</p>
+
+<div>
+ <input type="radio" id="a8" name="q8" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b8" name="q8" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c8" name="q8" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d8" name="q8" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e8" name="q8" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div>
+<br>
+
+<p>9. How many times in the previous month did you feel as if your problems were stacking up so high that you couldn't handle them?</p>
+
+<div>
+ <input type="radio" id="a9" name="q9" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b9" name="q9" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c9" name="q9" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d9" name="q9" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e9" name="q9" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div>
+<br>
+
+<p>10. How often in the previous month were you able to regulate how you spent your time and effectively focus on your work?</p>
+
+<div>
+ <input type="radio" id="a10" name="q10" value="Never">
+ <label for="Never">Never</label><br>
+ <input type="radio" id="b10" name="q10" value="Rarely">
+ <label for="Rarely">Rarely</label><br>
+ <input type="radio" id="c10" name="q10" value="Sometimes">
+ <label for="Sometimes">Sometimes</label><br>
+ <input type="radio" id="d10" name="q10" value="Often">
+ <label for="Often">Often</label><br>
+ <input type="radio" id="e10" name="q10" value="Very Often">
+ <label for="Very Often">Very Often</label>
+</div>
+<br>
+<br>
+<div id="box"><input type="submit" id="form-submit-button" onclick="stress_level()"/></div>
+
+<br>
+<br>
+<div id="Progress_Status"><div id="myprogressBar"></div></div>
+<br>
+<div id="result" style="text-align:center;"></div>
+<br>
+<div id="area"><button id="remedies_button" onclick="page_traversal()" hidden="hidden">Remedies</button></div>
+</div>
+</body>
+</html>

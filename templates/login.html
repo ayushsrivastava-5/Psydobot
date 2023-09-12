@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+{% csrf_token %}
+{% load crispy_forms_tags %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static '/images/styles/index.css' %}">
+    <title>Search</title>
+</head>
+
+<body>
+    
+    <div class="wrapper">
+        <div class="title-text">
+            <div class="title login">
+                Login Form</div>
+            <div class="title signup">
+                Signup Form</div>
+        </div>
+        <div class="form-container">
+            <div class="slide-controls">
+                <input type="radio" name="slide" id="login" checked>
+                <input type="radio" name="slide" id="signup">
+                <label for="login" class="slide login">Login</label>
+                <label for="signup" class="slide signup">Signup</label>
+                <div class="slider-tab">
+                </div>
+            </div>
+            <div class="form-inner">
+                <form action="../login_1/" class="login" method="POST">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="text" placeholder="Username" name="username" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <br>
+                    <div class="pass-link">
+                        <input type="checkbox" style="margin-right:4px;"><span style="color:#a742fa;font-size:16px;">Remember me</span>
+                        <a href="#" style="margin-left:155px">Forgot password?</a>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer">
+                        </div>
+                        <input type="submit" name="Login" value="Login">
+                    </div>
+                    <div class="signup-link">
+                        Not a member? <a href="">Signup now</a>
+                    </div>
+                    <div class="col">
+                        <br>
+                       <a href="#" ><img src="{% static '/images/styles/facebook.png' %}" style="margin-left:60px;height:40 px;width:50px;border: 2px solid white;border-radius: 25px;"></a>
+                       <a href="#"><img src="{% static '/images/styles/search.png' %}" style="margin-left:80px;height:40 px;width:50px;border: 2px solid white;border-radius: 25px;"></a>
+                       <a href="#"><img src="{% static '/images/styles/twitter.png' %}" style="margin-left:80px;height:40 px;width:50px;border: 2px solid white;border-radius: 25px;"></a>
+                    </div>
+                </form>
+                <form action="../signup/" class="signup" method="POST">
+                    {% csrf_token %}
+                    <div class="field">
+                        <input type="text" placeholder="Username" name="username" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" name="password" placeholder="Password*" pattern="(?=.*\d).{8,}" required>
+                    </div>
+                    <div class="field">
+                        <input type="number" placeholder="Phone Number" name="ph" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" required>
+                    </div>
+                    <div class="field">
+                        <input type="number" placeholder="Zip Code" name="zip" pattern="^[1-9][0-9]{5}$" required>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer">
+                        </div>
+                        <input type="submit" name="signup" value="Signup">
+                    </div>
+                    <br>
+                    <span><b>*Password must contain at least 8 characters and a number</b></span>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        const loginText = document.querySelector(".title-text .login");
+        const loginForm = document.querySelector("form.login");
+        const loginBtn = document.querySelector("label.login");
+        const signupBtn = document.querySelector("label.signup");
+        const signupLink = document.querySelector("form .signup-link a");
+        signupBtn.onclick = (() => {
+            loginForm.style.marginLeft = "-50%";
+            loginText.style.marginLeft = "-50%";
+        });
+        loginBtn.onclick = (() => {
+            loginForm.style.marginLeft = "0%";
+            loginText.style.marginLeft = "0%";
+        });
+        signupLink.onclick = (() => {
+            signupBtn.click();
+            return false;
+        });
+    </script>
+</body>
+
+</html>

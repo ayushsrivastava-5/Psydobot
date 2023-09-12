@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Psydobot</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        overflow-y;
+        background-image: url('https://img.freepik.com/premium-vector/ai-chatbot-seamless-pattern-design-artificial-intelligence-repeat-background-template-wrapping_607579-515.jpg?w=740');
+      }
+
+      #heading{
+        text-align: center;
+        color: red;
+        font-family: Georgia, sans-serif;
+        background: blue;
+        position: fixed;
+        top: 0px;
+        width: 100vw;
+        left: 0px;
+      }
+
+
+      
+      #chatbox {
+        border: 8px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        height: 350px;
+        overflow-y: scroll;
+        width: 60%;
+        margin:100px auto 0;
+        background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUXN_c1jwxq_gmuz1wvCiyNuGjzxWOrpFrI7NJMMfqzhlCUrnZdlsXzLFlpfvxINhyG3w&usqp=CAU');
+      }
+      #message {
+        margin-top: 10px;
+      }
+      .message_user{
+        background: lightyellow;
+        color: red;
+        padding: 1px;
+        margin-top: 5px;
+        border-radius: 8px;
+        text-align: right;
+        width:fit-content;
+        float:right;
+        margin-right: 0px !important;
+        margin-left: auto;
+      }
+
+      .message_chatbot{
+        background: lightgreen;
+        color: white;
+        padding: 1px;
+        margin-top: 5px;
+        border-radius: 8px;
+        text-align: left;
+        width:fit-content;
+        float: left
+        
+      }
+
+      .message-row{
+        clear: both;
+      }
+
+
+      #input {
+        margin-top: 10px;
+        margin-left: 25%;
+      }
+      #input input[type="text"] {
+        flex: 1;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        width: 50%;
+        
+      }
+      #input button {
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+        
+      }
+      #input button:hover {
+        background-color: #0062cc;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+  
+    <div id = "heading"><h1>Hello! I'm Psydobot, and I'm here to help you analyse your mental health.</h1></div>
+    
+    <div id="chatbox"></div>
+    <div id="input">
+        <form id = "predict">
+            {% comment %} {% csrf_token %} {% endcomment %}
+            <input type="text" id="message" placeholder="Type your message here...">
+            <button id="send">Send</button>
+        </form>
+
+      
+    </div>
+    <script>
+
+
+      // define the chatbot's questions and responses
+      var questions = [
+          "What is your name?",
+          "what is your age?",
+          "How was your Day?",
+          "Please give a brief description of the problem which you are facing currently"
+      ];
+      var responses = {};
+
+      // create a function to add a chat message to the chatbox
+      function addMessage(message, sender) {
+          var chatbox = document.getElementById("chatbox");
+          var div = document.createElement("div");
+          div.className = "message-row";
+          var div1 = document.createElement("div");
+          div1.className = "message_" + sender;
+          div1.innerHTML = "<p>" + message + "</p>";
+          div.appendChild(div1);
+          chatbox.appendChild(div);
+          chatbox.scrollTop = chatbox.scrollHeight;
+      }
+
+      // create a function to ask questions and get responses
+      function askQuestions() {
+          var i = 0;
+          addMessage(questions[i], "chatbot");
+          var input = document.getElementById("message");
+          var send = document.getElementById("send");
+          send.addEventListener("click", function(event) {
+                event.preventDefault();
+              var response = input.value;
+              responses[questions[i]] = response;
+              i++;
+              input.value = "";
+              if (i < questions.length) {
+                  addMessage(response, "user");
+                  addMessage(questions[i], "chatbot");
+              } else {
+                  addMessage(response, "user");
+                  provideResults(response);
+              }
+          });
+      }
+
+      // create a function to provide results or recommendations based on responses
+      function provideResults(text) {
+          // process the responses and provide relevant information or recommendations
+          $.ajax({
+            type: 'POST',
+            url: '../chatbot/',
+            data: JSON.stringify({'message': text}),
+            contentType: 'application/json',
+            success: function(response) {
+              addMessage(response['message'],"chatbot");
+            },
+            error: function(response) {
+              console.error(response);
+            }
+        })
+          addMessage("Thank you for answering the questions!", "chatbot");
+          addMessage("Please wait for a while I process your problems...", "chatbot");
+      }
+
+      // start the chatbot
+      askQuestions();
+    </script>
+  </body>
+</html>

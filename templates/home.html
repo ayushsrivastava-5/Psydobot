@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href= "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+        <style>
+            #body
+            {
+                /* background-image:url("background_image_start.jpg"); */
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;
+            }
+            .carousel-inner img {
+                width: 40%;
+                height: 300px;
+                margin-top: 100px;
+                
+            }
+            .carousel-control-next,.carousel-control-prev,.carousel-indicators
+            {
+              filter: invert(100%);
+            }
+            .carousel-control-prev-icon
+            {
+              margin-left: 150px;
+            }
+            .carousel-control-next-icon
+            {
+              margin-right: 150px;
+            }
+            section
+            {
+              text-align: center;
+            }
+            </style>    
+    </head>
+    <body id="body">
+        <nav class="navbar navbar-dark bg-dark" >
+            <div class="container-fluid">
+              <span class="navbar-header">
+                <a class="navbar-brand" href="#">PsydoBot</a>
+              </span>
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a href="../home"><button class="btn btn-dark" >Home </button></a> &nbsp;&nbsp;&nbsp;
+                  <a href="#abt"><button class="btn btn-dark" >About </button></a> &nbsp;&nbsp;&nbsp;
+                  <a href="../"><span class="fa fa-user-circle-o"></span> Logout</a> &nbsp;&nbsp;
+                  <!--<a href="index.html"><span class="fa fa-sign-in"></span> Login</a>--> 
+              </li>
+              </ul>
+            </div>
+        </nav>
+        <!-- <div style="width:100%; height:600px;display:flex;justify-content: center;align-items: center;">
+            <div><h1 style="color:black;font-family:Georgia, 'Times New Roman', Times, serif;">Psydobot</h1></div>
+            <br>
+            <div>A hand in need</div>
+        </div> -->
+        <center>
+        <div id="demo" class="carousel slide" data-ride="carousel">
+
+            <!-- Indicators -->
+            <ul class="carousel-indicators">
+              <li data-target="#demo" data-slide-to="0" class="active"></li>
+              <li data-target="#demo" data-slide-to="1"></li>
+              <li data-target="#demo" data-slide-to="2"></li>
+            </ul>
+            
+            <!-- The slideshow -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <a href="../chatbot"><img src="https://images.squarespace-cdn.com/content/v1/58f645cae58c62dbeca6bc2c/1537282283520-P4VO3APP8HZLVHXACV6V/SmartBot360+Chatbot"></a>
+              </div>
+              <div class="carousel-item">
+                <a href = "../map"><img src="/static/images/Maps.png"></a>
+              </div>
+              <div class="carousel-item">
+                <a href="../stress"><img src="/static/images/Stress.jpeg"></a>
+              </div>
+            </div>
+            
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#demo" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+
+          </div>
+        </center>
+        <section id="abt"><br>
+          <p>
+            PsydoBot is a one of a kind system that tackles the very sensitive topic of Mental Health in a simple yet effective way.
+          </p>
+        </section>
+    </body>
+</html>

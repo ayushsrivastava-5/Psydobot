@@ -1,0 +1,124 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+       /* Set the size of the div element that contains the map */
+      #map {
+        height: 60%;  /* The height is 400 pixels */
+        width: 80%;  /* The width is 600 pixels */
+       }
+       body
+       {
+         background-image: url('https://us.123rf.com/450wm/bloomua/bloomua1601/bloomua160100011/50569101-modern-line-icons-seamless-pattern-texture-of-medicine-elements-medical-assistance-clinics-laborator.jpg?ver=6');
+       }
+       #outer
+       {
+            background-color: white;
+            /* height: 101%;  The height is 400 pixels */
+            width: 80%;
+       }
+       /* List */
+      ul 
+      {
+        counter-reset: index;  
+        padding: 0;
+        margin-left: 300px;
+      }
+      /* List element */
+      li 
+      {
+        counter-increment: index; 
+        display: flex;
+        align-items: center;
+        padding: 12px 0;
+        box-sizing: border-box;
+        font-size: 20px;
+      }
+      li::before 
+      {
+          content: counters(index, ".", decimal-leading-zero);
+          font-size: 1.5rem;
+          text-align: right;
+          font-weight: bold;
+          min-width: 50px;
+          padding-right: 12px;
+          font-variant-numeric: tabular-nums;
+          align-self: flex-start;
+          background-image: linear-gradient(to bottom, purple, orangered);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+      }
+      li + li 
+      {
+          border-top: 1px solid rgba(255,255,255,0.2);
+      }
+    </style>
+  </head>
+  <body onload = "findcurr()">
+    <center>
+    <div id = "outer">
+    <!--The div element for the map -->
+      <br>
+      <h1>Nearby Mental HealthCare Centers</h1>
+      <div id="map"></div>
+      <ul>
+        <li><b>Dr.Fernandez Home For Schizophernia &nbsp;
+          <a href ="http://www.rehabfernandez.com/home.html" ><i class="fa fa-map-marker" style="font-size:25px;color:red"></a></i>
+        </b></li>
+        <li><b>Deepam Medfirst Hospital &nbsp;
+          <a href ="https://deepammedfirst.com/" ><i class="fa fa-map-marker" style="font-size:25px;color:red"></a></i>
+        </b></li>
+        <li><b>Dr Anandhan's MINDCARE &nbsp;
+          <a href ="https://www.practo.com/chennai/doctor/dr-p-anandhan-psychiatrist-2" ><i class="fa fa-map-marker" style="font-size:25px;color:red"></a></i>
+        </b></li>
+        <li><b>CHENNAI MIND CLINIC- A Psychiatric Clinic &nbsp;
+          <a href ="https://www.chennaimindclinic.com/" ><i class="fa fa-map-marker" style="font-size:25px;color:red"></a></i>
+        </b></li>
+        <li><b>OMR Psychiatrist &nbsp;
+          <a href ="https://omrpsychiatrist.in/" ><i class="fa fa-map-marker" style="font-size:25px;color:red"></a></i>
+        </b></li>
+      </ul>
+  </div>
+</center>
+    <script>
+      // Initialize and add the map
+      let map;
+      var xcoord , ycoord;
+      function findcurr()
+      {
+        if (navigator.geolocation)
+            navigator.geolocation.getCurrentPosition(initMap);
+      }
+      function initMap(position) 
+      {
+        xcoord = position.coords.latitude, ycoord = position.coords.longitude;
+        map = new google.maps.Map(document.getElementById('map'), 
+        {
+        zoom: 10,
+        center: {lat: xcoord, lng: ycoord}
+        });
+        var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/H/009900/");
+        let curr = new google.maps.Marker({position: {lat: xcoord, lng: ycoord}, map: map, icon : pinImage});
+
+        const cities = [
+          {lat:  13.029955894801738, lng: 80.1683261589078}, 
+          {lat:  12.930920, lng: 80.204660}, 
+          {lat:  12.915060, lng: 80.190580},   
+          {lat:  12.965040, lng: 80.191330}, 
+          {lat:  12.940420, lng: 80.232880}, 
+        ];
+
+        // Loop through cities, adding markers
+        for (let i=0; i<cities.length; i++) 
+        {
+          let position = cities[i]; // location of one city
+          // create marker for a city
+          var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/" + (i+1)+ "/FF0000/");
+          let mk = new google.maps.Marker({position: position, map: map, icon : pinImage});
+        }
+      }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvkZfkR4FB1DE1nQMznnRVq4xa1k53l9w&callback=initMap">
+    </script>
+  </body>
+</html>

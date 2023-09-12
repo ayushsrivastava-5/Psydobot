@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Psydobot</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+      }
+      h1, h2 {
+        text-align: center;
+      }
+      #chatbox {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 10px;
+        height: 300px;
+        overflow-y: scroll;
+      }
+      #message {
+        margin-top: 10px;
+      }
+      #input {
+        margin-top: 10px;
+        display: flex;
+      }
+      #input input[type="text"] {
+        flex: 1;
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        margin-right: 10px;
+      }
+      #input button {
+        border-radius: 5px;
+        border: none;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+      }
+      #input button:hover {
+        background-color: #0062cc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello! I'm [Chatbot name], and I'm here to help you with [purpose of the chatbot].</h1>
+    <div id="chatbox"></div>
+    <div id="input">
+      <input type="text" id="message" placeholder="Type your message here...">
+      <button id="send">Send</button>
+    </div>
+    <script>
+      // define the chatbot's questions and responses
+      var questions = [
+          "What is your name?",
+          "What is your age?",
+          "How was your Day?",
+          "Please give a brief description of the problem which you are facing currently "
+      ];
+      var responses = {};
+
+      // create a function to add a chat message to the chatbox
+      function addMessage(message, sender) {
+          var chatbox = document.getElementById("chatbox");
+          var div = document.createElement("div");
+          div.className = "message " + sender;
+          div.innerHTML = "<p>" + message + "</p>";
+          chatbox.appendChild(div);
+          chatbox.scrollTop = chatbox.scrollHeight;
+      }
+
+      // create a function to ask questions and get responses
+      function askQuestions() {
+          var i = 0;
+          addMessage(questions[i], "chatbot");
+          var input = document.getElementById("message");
+          var send = document.getElementById("send");
+          send.addEventListener("click", function() {
+              var response = input.value;
+              responses[questions[i]] = response;
+              i++;
+              input.value = "";
+              if (i < questions.length) {
+                  addMessage(response, "user");
+                  addMessage(questions[i], "chatbot");
+              } else {
+                  addMessage(response, "user");
+                  provideResults();
+              }
+          });
+      }
+
+      // create a function to provide results or recommendations based on responses
+      function provideResults() {
+          // process the responses and provide relevant information or recommendations
+          addMessage("Thank you for answering the questions!", "chatbot");
+          addMessage("Based on your responses, we recommend...", "chatbot");
+      }
+
+      // start the chatbot
+      askQuestions();
+    </script>
+  </body>
+</html>
